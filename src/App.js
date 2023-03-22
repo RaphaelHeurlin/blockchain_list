@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import './App.css';
-import Greeter from './artifacts/contracts/AttendanceRegister.sol/AttendanceRegister.json';
+import Attendance from './artifacts/contracts/AttendanceRegister.sol/AttendanceRegister.json';
 
-const attendanceAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const attendanceAddress = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0';
 
 function App() {
   const [list, setList] = useState(['Matisse', 'Raph', 'Gildas']);
@@ -20,9 +20,9 @@ function App() {
   async function fetchGreeting() {
     if (typeof window.ethereum !== 'undefined') {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(attendanceAddress, Greeter.abi, provider);
+      const contract = new ethers.Contract(attendanceAddress, Attendance.abi, provider);
       try {
-        const data = await contract.greet();
+        const data = await contract.get();
         setList(data);
       }
       catch (err) {
@@ -37,9 +37,8 @@ function App() {
       await requestAccount();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const contract = new ethers.Contract(attendanceAddress, Greeter.abi, signer);
-      const transaction = await contract.setGreeting(list);
-      setList('');
+      const contract = new ethers.Contract(attendanceAddress, Attendance.abi, signer);
+      const transaction = await contract.add(name)
       await transaction.wait();
       fetchGreeting();
     }
@@ -51,7 +50,7 @@ function App() {
       <h1>liste de présence</h1>
       <input onChange={e => setName(e.target.value)} placeholder="name" />
       <button onClick={addAttendance}> register</button>
-      <img ref="image" src="../img/class2.avif" alt=''></img>
+      <img src="../img/class2.avif" alt=''></img>
     </div>
   );
 }

@@ -3,31 +3,28 @@
 pragma solidity ^0.8.0;
 
 contract AttendanceRegister {
-    struct Student {
-        string name;
-        uint joiningDate;
-    }
-
     string[] presentStudents;
-
-    mapping(uint => Student) public registered; // roll number => student details
 
     /**
      * @dev Constructor
      */
     constructor() {
-        presentStudents = [];
+        presentStudents = new string[](30);
+    }
+
+    /**
+     * @dev Get all students present in the class
+     * @return Array of student names
+     */
+    function get() public view returns (string[] memory) {
+        return presentStudents;
     }
 
     /**
      * @dev Add student into attendance register
      * @param name Student name
-     * @param joiningDate Student joining date
      */
-    function add(string memory name, uint joiningDate) public {
-        Student memory s = Student(name, joiningDate);
-        rollNumber++;
-        registered[rollNumber] = s;
-        emit Added(name, block.timestamp);
+    function add(string memory name) public {
+        presentStudents.push(name);
     }
 }
