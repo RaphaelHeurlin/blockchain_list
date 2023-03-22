@@ -7,7 +7,7 @@ const greeterAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
 
 function App() {
   const [greeting, setGreetingValue] = useState();
-
+  list_test = []
   useEffect(() => {
     fetchGreeting();
   }, [])
@@ -46,10 +46,12 @@ function App() {
 
   return (
     <div className="App">
-      <p>{greeting}</p>
-      <input onChange={e => setGreetingValue(e.target.value)} placeholder="Set greeting" />
-      <button onClick={setGreeting}>Set Greeting</button>
-    </div>
+      <p>{list_test}</p>
+      <h1>liste de présence</h1>
+      <input placeholder="name" />
+      <button onClick={}> register</button>
+    <img ref="image" src="../img/class2.avif"></img>
+  </div>
   );
 }
 
