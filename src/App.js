@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import './App.css';
-import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
+import Greeter from './artifacts/contracts/AttendanceRegister.sol/AttendanceRegister.json';
 
-const greeterAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+const attendanceAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 function App() {
-  const [greeting, setGreetingValue] = useState();
-  list_test = []
+  const [list, setList] = useState(['Matisse', 'Raph', 'Gildas']);
+  const [name, setName] = useState('');
+
   useEffect(() => {
     fetchGreeting();
   }, [])
@@ -19,10 +20,10 @@ function App() {
   async function fetchGreeting() {
     if (typeof window.ethereum !== 'undefined') {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, provider);
+      const contract = new ethers.Contract(attendanceAddress, Greeter.abi, provider);
       try {
         const data = await contract.greet();
-        setGreetingValue(data);
+        setList(data);
       }
       catch (err) {
         console.log(err);
@@ -30,15 +31,15 @@ function App() {
     }
   }
 
-  async function setGreeting() {
-    if (!greeting) return
+  async function addAttendance() {
+    if (!list) return
     if (typeof window.ethereum !== 'undefined') {
       await requestAccount();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer);
-      const transaction = await contract.setGreeting(greeting);
-      setGreetingValue('');
+      const contract = new ethers.Contract(attendanceAddress, Greeter.abi, signer);
+      const transaction = await contract.setGreeting(list);
+      setList('');
       await transaction.wait();
       fetchGreeting();
     }
@@ -46,12 +47,12 @@ function App() {
 
   return (
     <div className="App">
-      <p>{list_test}</p>
+      <p>{list}</p>
       <h1>liste de présence</h1>
-      <input placeholder="name" />
-      <button onClick={}> register</button>
-    <img ref="image" src="../img/class2.avif"></img>
-  </div>
+      <input onChange={e => setName(e.target.value)} placeholder="name" />
+      <button onClick={addAttendance}> register</button>
+      <img ref="image" src="../img/class2.avif" alt=''></img>
+    </div>
   );
 }
 

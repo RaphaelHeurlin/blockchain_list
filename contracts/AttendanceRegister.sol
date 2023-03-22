@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.0;
 
 contract AttendanceRegister {
     struct Student {
@@ -8,23 +8,15 @@ contract AttendanceRegister {
         uint joiningDate;
     }
 
-    address public teacher;
-    uint rollNumber;
-
-    event Added(string name, uint time);
+    string[] presentStudents;
 
     mapping(uint => Student) public registered; // roll number => student details
-
-    modifier isTeacher() {
-        require(msg.sender == teacher, "Only teacher can add student");
-        _;
-    }
 
     /**
      * @dev Constructor
      */
     constructor() {
-        teacher = msg.sender;
+        presentStudents = [];
     }
 
     /**
@@ -32,7 +24,7 @@ contract AttendanceRegister {
      * @param name Student name
      * @param joiningDate Student joining date
      */
-    function add(string memory name, uint joiningDate) public isTeacher {
+    function add(string memory name, uint joiningDate) public {
         Student memory s = Student(name, joiningDate);
         rollNumber++;
         registered[rollNumber] = s;

@@ -1,8 +1,12 @@
-# Basic Sample Hardhat Project
+# Attendance register Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
-Try running some of the following tasks:
+```shell
+npx hardhat compile
+npx hardhat node
+# En parallele dans un autre terminal
+npx hardhat run scripts/deploy.js --network localhost
+```
 
 ```shell
 npx hardhat accounts
