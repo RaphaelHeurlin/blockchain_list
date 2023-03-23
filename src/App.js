@@ -44,12 +44,13 @@ function App() {
     }
   }
 
+
   return (
     <div className="App">
-      <p>{list}</p>
       <h1>liste de présence</h1>
       <input onChange={e => setName(e.target.value)} placeholder="name" />
       <button onClick={addAttendance}> register</button>
+      <ul>{list.filter((item) => item !== '').map(item => <li>{item}</li>)}</ul>
       <img src="../img/class2.avif" alt=''></img>
     </div>
   );
