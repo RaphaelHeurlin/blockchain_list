@@ -1,13 +1,33 @@
 # Attendance register Hardhat Project
 
+## Usage
 
-```shell
+Dans votre navigateur, installez puis configurez MetaMask
+```sh
 npx hardhat compile
+```
+
+Lancer le noeud
+```sh
 npx hardhat node
-# En parallele dans un autre terminal
+```
+
+En parallele dans un autre terminal
+
+```sh
 npx hardhat run scripts/deploy.js --network localhost
-# Ajouter le compte dans Meta Mask OU si dejà fait réinitialiser le compte dans Réglage -> avancé -> réinitialiser compte
+```
+
+
+Ajouter le compte dans Meta Mask 
+
+OU 
+
+Si dejà fait, réinitialiser le compte dans :
+- Paramètres -> Paramètres avancés -> Réinitialiser le compte
+
+Lancer le frontend
+```
 npm start
 ```
-Dans votre navigateur, configurez l'add-on MetaMask et ajoutez un compte Eth.
-Vous pouvez avoir l'@ privée d'un compte dans le terminal où vous avez executé `npx hardhat node`
+
