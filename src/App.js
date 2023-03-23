@@ -60,11 +60,14 @@ function App() {
   }
 
 
+
+
   return (
     <div className="App">
       <h1>liste de présence</h1>
       <input onChange={e => setName(e.target.value)} placeholder="name" />
       <button onClick={addAttendance}> register</button>
+      <button onClick={}> reset</button>
       <ul>{list.filter((item) => item !== '').map(item => <li>{item}</li>)}</ul>
       <button onClick={reset}>Reset</button>
       <img src="../img/class2.avif" alt=''></img>
