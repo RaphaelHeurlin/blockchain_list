@@ -8,18 +8,18 @@ const attendanceAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 function App() {
   const [list, setList] = useState([]);
   const [name, setName] = useState('');
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   useEffect(() => {
-    fetchGreeting();
-  }, [])
+    fetchAttendance();
+  })
 
   async function requestAccount() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
   }
 
-  async function fetchGreeting() {
+  async function fetchAttendance() {
     if (typeof window.ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const contract = new ethers.Contract(attendanceAddress, Attendance.abi, provider);
       try {
         const data = await contract.get();
@@ -31,16 +31,31 @@ function App() {
     }
   }
 
+  async function getSignerContract() {
+    if (typeof window.ethereum !== 'undefined') {
+      await requestAccount();
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(attendanceAddress, Attendance.abi, signer);
+      return contract;
+    }
+  }
+
   async function addAttendance() {
     if (!list) return
     if (typeof window.ethereum !== 'undefined') {
-      await requestAccount();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(attendanceAddress, Attendance.abi, signer);
+      const contract = await getSignerContract();
       const transaction = await contract.add(name)
       await transaction.wait();
-      fetchGreeting();
+      fetchAttendance();
+    }
+  }
+
+  async function reset() {
+    if (typeof window.ethereum !== 'undefined') {
+      const contract = await getSignerContract();
+      const transaction = await contract.reset()
+      await transaction.wait();
+      fetchAttendance();
     }
   }
 
@@ -51,6 +66,7 @@ function App() {
       <input onChange={e => setName(e.target.value)} placeholder="name" />
       <button onClick={addAttendance}> register</button>
       <ul>{list.filter((item) => item !== '').map(item => <li>{item}</li>)}</ul>
+      <button onClick={reset}>Reset</button>
       <img src="../img/class2.avif" alt=''></img>
     </div>
   );

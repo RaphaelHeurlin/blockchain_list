@@ -27,4 +27,8 @@ contract AttendanceRegister {
     function add(string memory name) public {
         presentStudents.push(name);
     }
+
+    function reset() public {
+        presentStudents = new string[](30);
+    }
 }
