@@ -6,9 +6,7 @@ export function Card(props) {
         <div className='card'>
             <strong>{props.name}</strong>
             <div className='date-info'>
-                <small>Date</small>
-                <small> {props.date}</small>
-                <small> {props.time} </small>
+                <small>Date : {props.date} {props.time}</small>
             </div>
         </div>
     )
