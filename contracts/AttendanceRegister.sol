@@ -39,6 +39,9 @@ contract AttendanceRegister {
         dates.push(block.timestamp);
     }
 
+    /**
+     * @dev Reset the attendance register
+     */
     function reset() public {
         presentStudents = new string[](30);
         dates = new uint[](30);
