@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BigNumber, ethers } from 'ethers';
 import './App.css';
+import { Card } from './Card';
 import Attendance from './artifacts/contracts/AttendanceRegister.sol/AttendanceRegister.json';
 
 const attendanceAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
@@ -74,13 +75,21 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>liste de présence</h1>
-      <input onChange={e => setName(e.target.value)} value={name} placeholder="name" />
-      <button onClick={addAttendance}> register</button>
-      <button onClick={reset}> reset</button>
-      <ul>{namelist.map((item, index) => dateList[index] ? <li>{item} - {formatDate(dateList[index])}</li> : <></>)}</ul>
-      <img src="../img/class2.avif" alt=''></img>
+    <div className='container'>
+      <header>
+        <h1>Attendance list</h1>
+      </header>
+      <input type="text" value={name} placeholder='Type your name' onChange={e => setName(e.target.value)} />
+      <button type='button' onClick={addAttendance}>Add</button>
+      <button type='button' onClick={reset}>Reset</button>
+
+
+
+      {
+        namelist.map((item, index) => (
+          dateList[index] ? <Card key={dateList[index]} name={item} date={formatDate(dateList[index])} /> : <></>
+        ))
+      }
     </div>
   );
 }

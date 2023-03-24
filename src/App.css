@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+.card {
+  height: 100px;
+  width: 50%;
+  background: #735bf2;
+  color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.date-info {
   display: flex;
   flex-direction: column;
+}
+
+.container {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.container header {
+  width: 50%;
+  display: flex;
+  margin: 84px 0 24px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container header div {
+  display: flex;
+  align-items: center;
+}
+
+.container header h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.container header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-left: 7px;
+  border: 5px solid #ea4c89;
+}
+
+.container input {
+  width: 50%;
+  padding: 24px;
+  background: #e6e6e6;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.container button {
+  width: 50%;
+  padding: 24px;
+  font-weight: 700;
+  background: #ea4c89;
+  color: #ffffff;
+  border-radius: 5px;
+  margin: 12px 0 12px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.2s;
+  font-size: 16px;
+}
+
+.container button:hover {
+  filter: brightness(0.9);
+}
+
+.button-container {
+  margin-bottom: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
