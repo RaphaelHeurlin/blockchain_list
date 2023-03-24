@@ -83,8 +83,6 @@ function App() {
       <button type='button' onClick={addAttendance}>Add</button>
       <button type='button' onClick={reset}>Reset</button>
 
-
-
       {
         namelist.map((item, index) => (
           dateList[index] ? <Card key={dateList[index]} name={item} date={formatDate(dateList[index])} /> : <></>
