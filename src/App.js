@@ -29,9 +29,6 @@ function App() {
         const names = (await contract.getNames()).filter(name => name !== '');
         const dates = (await contract.getDates()).filter(date => big.eq(date) === false).map(date => new Date(date.toNumber() * 1000));
 
-        console.log(names);
-        console.log(dates);
-
         setDateList(dates);
         setNameList(names);
       }
