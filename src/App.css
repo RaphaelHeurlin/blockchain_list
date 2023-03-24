@@ -1,7 +1,7 @@
 .card {
   height: 100px;
   width: 50%;
-  background: #735bf2;
+  background: rgb(166, 203, 50);
   color: #ffffff;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -45,7 +45,7 @@
   height: 60px;
   border-radius: 30px;
   margin-left: 7px;
-  border: 5px solid #ea4c89;
+  border: 5px solid rgb(65, 150, 50);
 }
 
 .container input {
@@ -61,7 +61,7 @@
   width: 50%;
   padding: 24px;
   font-weight: 700;
-  background: #ea4c89;
+  background: rgb(65, 150, 50);
   color: #ffffff;
   border-radius: 5px;
   margin: 12px 0 12px;
